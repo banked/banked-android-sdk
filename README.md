@@ -2,7 +2,7 @@
 
 The Banked SDK offers an interface for processing a payment session created using the Banked API.
 
-## Installation
+## Installation (Kotlin)
 
 The Banked Android SDK is hosted on the GitHub package registry. In order to use the package you will need a GitHub account.
 
@@ -34,6 +34,19 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
                 }
             }
         }
+
+1) Ensure you set Java compatibility to 1.8
+
+            android {
+                compileOptions {
+                    sourceCompatibility 1.8
+                    targetCompatibility 1.8
+                }
+            }
+
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
 
 1) Update the dependancies in your app `build.gradle`
 
