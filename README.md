@@ -35,3 +35,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
         }
 
 1) Sync your Android gradle project and you should have the Banked Android SDK installed and ready to use!
+
+## Usage
+
+TODO
