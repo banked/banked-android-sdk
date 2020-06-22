@@ -54,7 +54,8 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
          implementation 'com.banked:checkout:1.0.0'
          ....
         }
-
+1) Ensure your application has the INTERNET permission in `AndroidManifest.xml`
+        <uses-permission android:name="android.permission.INTERNET" />
 1) Sync your Android gradle project and you should have the Banked Android SDK installed and ready to use!
 
 ## Usage
