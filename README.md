@@ -15,7 +15,10 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 1) Add `.github-properties` to your `.gitignore` file to ensure you don't accidentally commit your GitHub access details.
 1) Update your project `build.gradle` file to look like this:
 
-        def githubProperties = new Properties() githubProperties.load(new FileInputStream(rootProject.file(".github.properties")))
+        def githubProperties = new Properties()
+        githubProperties.load(new FileInputStream(rootProject.file(".github.properties")))
+
+        ...
 
         allprojects {
             repositories {
