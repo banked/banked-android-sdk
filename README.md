@@ -16,7 +16,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 1) Update your project `build.gradle` file to look like this:
 
         def githubProperties = new Properties()
-        githubProperties.load(new FileInputStream(rootProject.file(".github.properties")))
+        githubProperties.load(new FileInputStream(rootProject.file(".github-properties")))
 
         ...
 
