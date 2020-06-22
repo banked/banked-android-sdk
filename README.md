@@ -13,10 +13,14 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
         gpr.key=PERSONAL_ACCESS_TOKEN
 
 1) Add `.github-properties` to your `.gitignore` file to ensure you don't accidentally commit your GitHub access details.
-1) Update your app `build.gradle` file 
+1) Update your project `build.gradle` file to look like this:
 
         def githubProperties = new Properties() githubProperties.load(new FileInputStream(rootProject.file(".github.properties")))
-        repositories {
+
+        allprojects {
+            repositories {
+                google()
+                jcenter()
                 maven {
                     name = "GitHubPackages"
                     url = uri("https://maven.pkg.github.com/banked/banked-android-sdk")
@@ -26,6 +30,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
                     }
                 }
             }
+        }
 
 1) Update the dependancies in your app `build.gradle`
 
