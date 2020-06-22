@@ -20,7 +20,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
                 maven {
                     name = "GitHubPackages"
                     url = uri("https://maven.pkg.github.com/banked/banked-android-sdk")
-                credentials {
+                    credentials {
                         username = githubProperties['gpr.usr']
                         password = githubProperties['gpr.key']
                     }
