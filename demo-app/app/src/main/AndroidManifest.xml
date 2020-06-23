@@ -24,9 +24,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
                     android:host="banked.com"
-                    android:pathPattern="/checkout" />
+                    android:pathPattern="/checkout"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
     </application>
