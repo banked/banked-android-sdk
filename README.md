@@ -52,7 +52,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 1) Update the dependancies in your app `build.gradle`
 
         dependencies {
-         implementation 'com.banked:checkout:1.0.1'
+         implementation 'com.banked:checkout:1.0.4'
          ....
         }
         
