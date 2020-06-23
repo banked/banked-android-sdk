@@ -9,7 +9,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 
 1) [Create Github personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
 
-	** When creating your personal access token you need to enable the package:read permission **
+	**When creating your personal access token you need to enable the package:read permission**
 
 1) Store personal token in a `.github-properties` file in your project. 
 
