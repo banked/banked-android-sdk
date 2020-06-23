@@ -67,7 +67,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 
 ## Usage (Kotlin)
 
-The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK requires a FrameLayout element in the Activity or Fragment view you want to embed the Checkout flow ib. The id should be `main_container`.
+The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK requires a FrameLayout element in the Activity or Fragment view you want to embed the Checkout flow in. The id should be `main_container`.
 
 1) Add the FrameLayout to your view
 	
