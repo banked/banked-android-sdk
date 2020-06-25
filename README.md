@@ -102,7 +102,7 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
 
         checkoutIntent.putExtra("paymentId", <payment session id>)
 
-        startActivity(checkoutIntent)
+        startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
         
 1) Add an intent filter to your AndroidManifest.xml file inside your activity.
 
@@ -147,5 +147,5 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
 
 	        checkoutIntent.putExtra("paymentId",  paymentSessionId)
 
-	        startActivity(checkoutIntent)
+	        startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
 		}
