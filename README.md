@@ -149,3 +149,21 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
 
 	        startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
 		}
+
+1) In your Activity onActivityResult method add the following logic to handle the payment session result. If the user have canceled the payment session without completing it you will receive RESULT_CANCELED, otherwise the result code will be RESULT_OK. Get the intent boolean extra "success" to see was the payment successful or not.
+
+		override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+                super.onActivityResult(requestCode, resultCode, data)
+        
+                // Check which request we're responding to
+                if (requestCode == CHECKOUT_REQUEST_CODE) {
+                    // Make sure the request was successful
+                    if (resultCode == Activity.RESULT_OK) {
+                        // The payment session has been completed
+                        // Get the value for "success" from the Extras to see if the payment was successful or failed
+                        val success = data?.getBooleanExtra("success", false)
+                    } else if (resultCode == Activity.RESULT_CANCELED) {
+                        // The payment session has been canceled without proceeding with the payment
+                    }
+                }
+            }
