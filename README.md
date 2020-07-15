@@ -11,7 +11,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 
 	**When creating your personal access token you need to enable the package:read permission**
 
-1) Store personal token in a `.github-properties` file in your project. 
+1) Store personal token in a `.github-properties` file in your project.
 
         gpr.usr=GITHUB_USERID
         gpr.key=PERSONAL_ACCESS_TOKEN
@@ -55,14 +55,14 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 1) Update the dependancies in your app `build.gradle`
 
         dependencies {
-         implementation 'com.banked:checkout:1.1.6'
+         implementation 'com.banked:checkout:1.2.0'
          ....
         }
-        
+
 1) Ensure your application has the INTERNET permission in `AndroidManifest.xml`
 
         <uses-permission android:name="android.permission.INTERNET" />
-        
+
 1) Sync your Android gradle project and you should have the Banked Android SDK installed and ready to use!
 
 ## Usage (Kotlin)
@@ -70,7 +70,7 @@ The Banked Android SDK is hosted on the GitHub package registry. In order to use
 The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK requires a FrameLayout element in the Activity or Fragment view you want to embed the Checkout flow in. The id should be `main_container`.
 
 1) Add the FrameLayout to your view
-	
+
 	If you're calling the Checkout SDK from your MainActivity, stick this in your `activity_main.xml`.
 
         <FrameLayout
@@ -78,7 +78,7 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
           android:layout_height="match_parent"
           android:id="@+id/main_container">
         </FrameLayout>
-    
+
 1) Generate a PaymentSession
 
 	Use the Banked API to create a PaymentSession. Please read the API documentation for more detail - Banked API - Generating a Payment Session
@@ -92,8 +92,9 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
 	You can choose not to use the templated URL - but in this case you would need to persist the Payment ID after the PaymentSession is created and handle this independently.
 
 1) Trigger the Checkout flow by creating a custom Intent. You might want to put this in a button onclick handler.
-	 
+
 	 Replace `<payment session id>` with the ID of the payment session you created in the previous step.
+     Replace `<client key>` with a Banked client key. You can create a test or live client key in the [Banked console](https://console.banked.com/client_keys)
 
         val checkoutIntent = Intent(
           this@MainActivity,
@@ -101,15 +102,16 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
         )
 
         checkoutIntent.putExtra("paymentId", <payment session id>)
+        checkoutIntent.putExtra("clientKet", <client key>)
 
         startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
-        
+
 1) Add an intent filter to your AndroidManifest.xml file inside your activity.
 
 	 This is required so the checkout will complete inside your application after a user has authorised a payment via their online banking or mobile banking application. Please replace `yourbusiness.com` with your desired domain name.
 
         <activity android:name=".MainActivity">
-            ...    
+            ...
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -135,7 +137,7 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
             if (id != null) {
                 paymentSessionId = id;
             };
-        } 
+        }
 
 1) Update your onCreate logic to initialise the SDK with the payment session ID extracted from the intent in the previous step if it exists
 
@@ -145,7 +147,8 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
 	          CheckoutActivity::class.java
 	        )
 
-	        checkoutIntent.putExtra("paymentId",  paymentSessionId)
+            checkoutIntent.putExtra("paymentId",  paymentSessionId)
+            checkoutIntent.putExtra("clientKey", <your client key>)
 
 	        startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
 		}
@@ -154,7 +157,7 @@ The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK req
 
 		override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
                 super.onActivityResult(requestCode, resultCode, data)
-        
+
                 // Check which request we're responding to
                 if (requestCode == CHECKOUT_REQUEST_CODE) {
                     // Make sure the request was successful
