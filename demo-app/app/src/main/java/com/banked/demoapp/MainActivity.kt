@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 )
 
                 checkoutIntent.putExtra("paymentId", id)
-                checkoutIntent.putExtra("clientKey", "< your banked client key >")
+                checkoutIntent.putExtra("clientKey", "198e06e9cd13101fa6800adf36b3184d")
 
                 startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
             };
@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
             // https://developer.banked.com/docs/getting-started
             //
             // You need to specify the payer details when creating the payment session
-            checkoutIntent.putExtra("paymentId", "< your payment session id >")
-            checkoutIntent.putExtra("clientKey", "< your banked client key >")
+            checkoutIntent.putExtra("paymentId", "fd3e392c-0f4a-4b1c-b420-ef6d2c1cf937")
+            checkoutIntent.putExtra("clientKey", "198e06e9cd13101fa6800adf36b3184d")
 
             startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
         };

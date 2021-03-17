@@ -25,7 +25,7 @@
 
                 <data
                     android:host="banked.com"
-                    android:pathPattern="/checkout"
+                    android:pathPattern="/*"
                     android:scheme="https" />
             </intent-filter>
         </activity>
