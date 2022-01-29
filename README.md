@@ -1,172 +1,95 @@
+# Banked Android SDK Setup and Examples
 
-# Banked Checkout SDK
+## Further reading
+You can find more information about Banked in our [Developer Docs](https://developer.banked.com/docs/introduction), including a guide on how to set up Payment Sessions.
 
-The Banked SDK offers an interface for processing a payment session created using the Banked API.
+## Setup
+Banked Android SDK works on Android 5.0+ (API 21+) and Java 11
 
-## Installation (Kotlin)
+```
+implementation("com.banked:checkout:2.0.1-beta13")
+```
 
-The Banked Android SDK is hosted on the GitHub package registry. In order to use the package you will need a GitHub account.
+## Quick start
+1. Add the latest dependency to your app gradle
+2. Set the API key and payment ID
+```
+Banked.apiKey = "Add your API key here"
+```
+3. Add the following to the parent ```onStart``` function
+```
+override fun onStart() {
+    super.onStart()
+    Banked.onStart(this)
+} 
+```
+4. Add support for deep linking back into the SDK from the bank
+    1. If you use a single activity and multiple fragments with the Jetpack navigation library, add the following:
+        1. Add the navigation graph in your main activity in the application manifest
+        ``` <nav-graph android:value="@navigation/your_nav_graph" />```
 
-1) [Create Github personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
+        2. Add the deep link format you will be using for your integration to the fragment you wish to get the callback into
+        ```
+         <fragment
+            android:id="@+id/Fragment"
+            android:name="<Add the fragment full qualified name which you want to open>">
+            <deepLink app:uri="<Add the deep link format you will be using>" />
+        </fragment>
+        ```
 
-	**When creating your personal access token you need to enable the package:read permission**
-
-1) Store personal token in a `.github-properties` file in your project.
-
-        gpr.usr=GITHUB_USERID
-        gpr.key=PERSONAL_ACCESS_TOKEN
-
-1) Add `.github-properties` to your `.gitignore` file to ensure you don't accidentally commit your GitHub access details.
-1) Update your project `build.gradle` file to look like this:
-
-        def githubProperties = new Properties()
-        githubProperties.load(new FileInputStream(rootProject.file(".github-properties")))
-
-        ...
-
-        allprojects {
-            repositories {
-                google()
-                jcenter()
-                maven {
-                    name = "GitHubPackages"
-                    url = uri("https://maven.pkg.github.com/banked/banked-android-sdk")
-                    credentials {
-                        username = githubProperties['gpr.usr']
-                        password = githubProperties['gpr.key']
-                    }
-                }
-            }
-        }
-
-1) Ensure you set Java compatibility to 1.8
-
-            android {
-                compileOptions {
-                    sourceCompatibility 1.8
-                    targetCompatibility 1.8
-                }
-            }
-
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-
-1) Update the dependancies in your app `build.gradle`
-
-        dependencies {
-         implementation 'com.banked:checkout:1.2.0'
-         ....
-        }
-
-1) Ensure your application has the INTERNET permission in `AndroidManifest.xml`
-
-        <uses-permission android:name="android.permission.INTERNET" />
-
-1) Sync your Android gradle project and you should have the Banked Android SDK installed and ready to use!
-
-## Usage (Kotlin)
-
-The Checkout SDK uses dynamic fragments to handle the checkout flow. The SDK requires a FrameLayout element in the Activity or Fragment view you want to embed the Checkout flow in. The id should be `main_container`.
-
-1) Add the FrameLayout to your view
-
-	If you're calling the Checkout SDK from your MainActivity, stick this in your `activity_main.xml`.
-
-        <FrameLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:id="@+id/main_container">
-        </FrameLayout>
-
-1) Generate a PaymentSession
-
-	Use the Banked API to create a PaymentSession. Please read the API documentation for more detail - Banked API - Generating a Payment Session
-
-	IMPORTANT - You must provide callback URLs as part of the PaymentSession which will return your users to your application once they have authorised the payment. There are success and failure redirects which you can specify - but as the SDK retrieves the PaymentSession when handling the callback, and this already has a more detailed status, its simplest to provide one callback URL for both.
-
-	In order to handle the callback later, you will need the Payment ID - which is automatically added by Banked. However you must provide a templated URL for us to do this. Please use __PAYMENT_ID__ to indicate where to include the Payment ID.
-
-	E.g. https://mybusinessname.com/callback/__PAYMENT_ID__ or https://mybusinessname.com/callback/?id=__PAYMENT_ID__
-
-	You can choose not to use the templated URL - but in this case you would need to persist the Payment ID after the PaymentSession is created and handle this independently.
-
-1) Trigger the Checkout flow by creating a custom Intent. You might want to put this in a button onclick handler.
-
-	 Replace `<payment session id>` with the ID of the payment session you created in the previous step.
-     Replace `<client key>` with a Banked client key. You can create a test or live client key in the [Banked console](https://console.banked.com/client_keys)
-
-        val checkoutIntent = Intent(
-          this@MainActivity,
-          CheckoutActivity::class.java
-        )
-
-        checkoutIntent.putExtra("paymentId", <payment session id>)
-        checkoutIntent.putExtra("clientKet", <client key>)
-
-        startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
-
-1) Add an intent filter to your AndroidManifest.xml file inside your activity.
-
-	 This is required so the checkout will complete inside your application after a user has authorised a payment via their online banking or mobile banking application. Please replace `yourbusiness.com` with your desired domain name.
-
-        <activity android:name=".MainActivity">
-            ...
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="http"
-                    android:host="yourbusiness.com"
-                    android:pathPattern="/checkout" />
+    2. If you do not use the Jetpack navigation library, you need to add the deep link support into the app manaifest
+    ```
+    <activity android:name="<Your activity>">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-         </activity>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data
+                android:host="<deep link host>"
+                android:scheme="<deep link scheme>" />
+        </intent-filter>
+    </activity>
+    ```
+5. Call the following to start a payment
+    ```
+    Banked.startPayment(
+        this,
+        "Your payment ID",
+        "Your continue URL"
+    )
+    ```
 
-1) In your Activity onCreate method add the following logic. This logic extracts the payment session ID from the app link you configured in the previous step when your application is opened via an App Link.
+## Getting feedback to the application
+In order to notify the calling application when the payment is a success/fail you can set a listener to listen for these events.
+```
+Banked.onPaymentSessionListener = object:OnPaymentSessionListener {
+    override fun onPaymentFailed(paymentResult: PaymentResult) {
+        // Handle payment failed.
+    }
 
-        val appLinkIntent = intent
-        val appLinkAction = appLinkIntent.action
-        val appLinkData = appLinkIntent.data
+    override fun onPaymentSuccess(paymentResult: PaymentResult) {
+        // Handle payment success 
+    }
+    
+    override fun onPaymentAborted() {
+        // Handle payment aborted
+    }
+}
+```
 
-        val paymentSessionId = ""
+## SDK logging
+The SDK log setting is handled by setting the ```LogLevel```. This can be done as follows
+```
+Banked.setLogLevel(LogLevel.DEBUG)
+```
+To disable logging completely for when creating release builds for example, it can be done by setting
+```
+Banked.setLogLevel(LogLevel.NONE)
+```
 
-        if (Intent.ACTION_VIEW == appLinkAction) {
-            val id = appLinkData?.getQueryParameter("id")
-            if (id != null) {
-                paymentSessionId = id;
-            };
-        }
-
-1) Update your onCreate logic to initialise the SDK with the payment session ID extracted from the intent in the previous step if it exists
-
-		if (paymentSessionId !== "") {
-	        val checkoutIntent = Intent(
-	          this@MainActivity,
-	          CheckoutActivity::class.java
-	        )
-
-            checkoutIntent.putExtra("paymentId",  paymentSessionId)
-            checkoutIntent.putExtra("clientKey", <your client key>)
-
-	        startActivityForResult(checkoutIntent, CHECKOUT_REQUEST_CODE)
-		}
-
-1) In your Activity onActivityResult method add the following logic to handle the payment session result. If the user have canceled the payment session without completing it you will receive RESULT_CANCELED, otherwise the result code will be RESULT_OK. Get the intent boolean extra "success" to see was the payment successful or not.
-
-		override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-                super.onActivityResult(requestCode, resultCode, data)
-
-                // Check which request we're responding to
-                if (requestCode == CHECKOUT_REQUEST_CODE) {
-                    // Make sure the request was successful
-                    if (resultCode == Activity.RESULT_OK) {
-                        // The payment session has been completed
-                        // Get the value for "success" from the Extras to see if the payment was successful or failed
-                        val success = data?.getBooleanExtra("success", false)
-                    } else if (resultCode == Activity.RESULT_CANCELED) {
-                        // The payment session has been canceled without proceeding with the payment
-                    }
-                }
-            }
+## Example projects
+To see some examples of the different setups you can checkout the code at [banked-android-sdk-examples](https://github.com/banked/banked-android-sdk-examples)
