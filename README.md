@@ -7,7 +7,7 @@ You can find more information about Banked in our [Developer Docs](https://devel
 Banked Android SDK works on Android 5.0+ (API 21+) and Java 11
 
 ```
-implementation("com.banked:checkout:2.1.0")
+implementation("com.banked:checkout:2.1.1")
 ```
 
 ## Quick start
@@ -79,6 +79,12 @@ Banked.onPaymentSessionListener = object:OnPaymentSessionListener {
         // Handle payment aborted
     }
 }
+```
+
+## Custom base url
+If you need to specify a custom URL for your Banked API endpoint, this can be done as shown below:
+```
+Banked.baseUrl = "https://my-custom-base-url.com/
 ```
 
 ## SDK logging
