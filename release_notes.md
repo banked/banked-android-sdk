@@ -1,5 +1,14 @@
 # Release Notes
 
+## v2.2.0
+- Removed Avios functionality
+- Search functionality added to the child provider screen
+- Searching in the provider screens now highlights the search text
+- Updated tracking keys for the search event
+- UI improvements to the provider screens
+- Added german locale support
+- IBAN entry flow improved
+
 ## v2.1.1
 - Fixed issue with ```OnPaymentSessionListener.onPaymentAborted()``` being called when a payment has completed or failed
 - Base URL is now no longer nullable
