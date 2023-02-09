@@ -1,5 +1,12 @@
 # Release Notes
 
+## v2.3.0
+- Added support for merchant incentives to be displayed
+- Added fallback for unknown legal text
+- Changing provider with an IBAN on the summary screen now navigates back to the enter IBAN screen
+- IBANs are now validated before continuing to the next step
+- Kotlin version updated 1.8.0
+
 ## v2.2.0
 - Removed Avios functionality
 - Search functionality added to the child provider screen
