@@ -1,5 +1,10 @@
 # Release Notes
 
+## v2.3.1
+- Fixed a potential crash when tracking events
+- Improved exception handling in network layer
+- Updated Sentry dependency to 6.15.0
+
 ## v2.3.0
 - Added support for merchant incentives to be displayed
 - Added fallback for unknown legal text
