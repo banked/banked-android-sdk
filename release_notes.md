@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.3.2
+- Fixed a bug with IBANs not being validated when changing provider
+
 ## v2.3.1
 - Fixed a potential crash when tracking events
 - Improved exception handling in network layer
