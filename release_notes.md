@@ -1,5 +1,11 @@
 # Release Notes
 
+## v2.3.3
+- Fixed a crash when starting checkout with the keyboard open
+- Added fix for potential issues mapping the logo sprite
+- Updated SDK copy
+- Updated kotlin to version 1.8.10
+
 ## v2.3.2
 - Fixed a bug with IBANs not being validated when changing provider
 
