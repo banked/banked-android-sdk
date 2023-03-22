@@ -1,7 +1,7 @@
 # Release Notes
 
 ## v2.3.4
-- Added a crash when receiving invalid image urls from the backend
+- Fixed a crash when receiving invalid image urls from the backend
 
 ## v2.3.3
 - Fixed a crash when starting checkout with the keyboard open
