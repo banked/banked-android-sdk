@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.3.5
+- Improved checking of payment state when deep linking back into SDK
+- Fixed string replacement issue on payment status screen
+
 ## v2.3.4
 - Fixed a crash when receiving invalid image urls from the backend
 
