@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.3.6
+- Added localised french strings
+
 ## v2.3.5
 - Improved checking of payment state when deep linking back into SDK
 - Fixed string replacement issue on payment status screen
