@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.3.7
+- Improved provider image mapping 
+
 ## v2.3.6
 - Added localised french strings
 
