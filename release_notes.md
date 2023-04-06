@@ -1,5 +1,10 @@
 # Release Notes
 
+## v2.4.0
+- Improved payment status checking to better reflect the final status of the payment
+- Added new payment pending screen
+- Updated failed payment UI state
+
 ## v2.3.8
 - Added localised spanish strings
 
