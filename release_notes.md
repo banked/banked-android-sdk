@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.4.1
+- Minor start up performance improvement
+
 ## v2.4.0
 - Improved payment status checking to better reflect the final status of the payment
 - Added new payment pending screen
