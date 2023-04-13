@@ -1,5 +1,8 @@
 # Release Notes
 
+## v2.4.2
+- Updated processing payment display time out from 30 seconds to 10 seconds
+
 ## v2.4.1
 - Minor start up performance improvement
 
