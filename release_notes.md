@@ -1,5 +1,15 @@
 # Release Notes
 
+## v2.4.4
+- Added fix for bitmap recycle crash
+- Added potential fix for fragment not attached crash
+
+## v2.4.3
+- Fixed issue where multiple SDK instances could be launched
+- Updated returning user journey flows:
+-- EU payment will always return to the provider selection screen
+-- GB payments will return to the summary screen unless the provider is unavailable, then they will return to the provider selection screen
+
 ## v2.4.2
 - Updated processing payment display time out from 30 seconds to 10 seconds
 
