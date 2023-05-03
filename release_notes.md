@@ -1,8 +1,12 @@
 # Release Notes
 
+## v2.4.5
+- Fixed issue with SDK callback listener being triggered multiple times if aborted during processing step
+- Added potential fix for SDK not displaying
+
 ## v2.4.4
 - Added fix for bitmap recycle crash
-- Added potential fix for fragment not attached crash
+- Added fix for fragment not attached crash
 
 ## v2.4.3
 - Fixed issue where multiple SDK instances could be launched
