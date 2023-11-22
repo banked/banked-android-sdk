@@ -1,5 +1,34 @@
 # Release Notes
 
+## v2.5.4
+- Fixed issue with checkout not loading correctly when navigating back from a provider
+
+## v2.5.3
+- Fixed issue with selected provider is not remembered correctly for returning user journey
+
+## v2.5.2
+- Added payment reference to various screens
+- Updated SDK text in various screens 
+
+## v2.5.1
+- Fixed minor bug in displaying region specific text
+
+## v2.5.0
+- Added Dutch (NL) strings
+- Added new optional parameter (```countryCodeProviderSort```) when starting a payment to prioritise providers in the list of that country.
+- Updated provider sorting rules to use new ```countryCodeProviderSort``` parameter
+- Updated SDK text in various screens
+- Updated UI on supplementary attributes screen
+- ```com.google.android.material:material``` updated to version 1.9.0
+- ```androidx.core:core-ktx``` updated to version 1.10.1
+
+## v2.4.6-beta02
+- Improved bottom sheet expand logic to prevent ```setExpandedOffset``` crash in the bottom sheet
+- Fixed analytics data mapping crash
+
+## v2.4.6-beta01
+- Added potential fix for processing of close checkout events
+
 ## v2.4.5
 - Fixed issue with SDK callback listener being triggered multiple times if aborted during processing step
 - Added potential fix for SDK not displaying
