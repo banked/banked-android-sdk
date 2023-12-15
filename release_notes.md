@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.5.5
+- Improved pattern matching in provider search so special characters are easier to search against
+- Fixed issue when no provider brands are found when mapping the checkout session state
+
 ## v2.5.4
 - Fixed issue with checkout not loading correctly when navigating back from a provider
 
