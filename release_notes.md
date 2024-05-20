@@ -1,5 +1,11 @@
 # Release Notes
 
+## v2.5.7
+- Opening providers are now done as a new task
+- Fixed issue displaying SDK close button
+- Added new actions for no search results on provider screens
+- Fixed issue with locale not being set from the device correctly
+
 ## v2.5.6
 - Updated SDK copy
 
