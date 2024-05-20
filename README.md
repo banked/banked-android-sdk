@@ -7,7 +7,7 @@ You can find more information about Banked in our [Developer Docs](https://devel
 Banked Android SDK works on Android 5.0+ (API 21+) and Java 11
 
 ```
-implementation("com.banked:checkout:2.5.6")
+implementation("com.banked:checkout:2.5.7")
 ```
 
 ## Quick start
@@ -57,9 +57,10 @@ override fun onStart() {
 5. Call the following to start a payment
     ```
     Banked.startPayment(
-        this,
-        "Your payment ID",
-        "Your continue URL"
+        fragment = this,
+        paymentId = "Your payment ID",
+        continueUrl = "Your continue URL",
+        countryCodeProviderSort = "en",
     )
     ```
 
